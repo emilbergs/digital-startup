@@ -6,6 +6,7 @@
       <router-link :to="{ name: 'Update', params: { post: post } }">
         <button>Rediger ønske</button>
       </router-link>
+      <button v-on:click="deletePost(post)">Slet ønske</button>
     </article>
   </div>
 </template>
@@ -21,6 +22,11 @@ export default {
   firestore: {
     posts: postRef,
   },
+  methods: {
+    deletePost(post) {
+      postRef.doc(post.id).delete()
+    }
+  }
 };
 </script>
 
