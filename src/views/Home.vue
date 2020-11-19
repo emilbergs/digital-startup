@@ -1,6 +1,7 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img alt="Emil image" src="../assets/emil.jpg" id="emilImg" />
+    <h1>Min ønskeliste 2020 ❄️ Emil Berg Steffensen</h1>
     <post-list></post-list>
   </div>
 </template>
@@ -14,3 +15,10 @@ export default {
   components: { PostList }
 };
 </script>
+
+<style>
+#emilImg {
+  max-width: 20%;
+  border-radius: 100%;
+}
+</style>

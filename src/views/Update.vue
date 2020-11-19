@@ -1,11 +1,11 @@
 <template>
-  <div class="create">
-    <h1>Tilføj en ny gave ⤵</h1>
+  <div class="update">
+    <h1>Update</h1>
     <form>
       <input
         type="text"
         v-model="post.description"
-        placeholder="Tilføj et nyt ønske ..."
+        placeholder="Type a description here"
         required
       />
       <input
@@ -20,7 +20,7 @@
       <div>
         <img :src="post.image" class="image-preview" />
       </div>
-      <button type="button" v-on:click="createPost">Opret nyt ønske</button>
+      <button type="button" v-on:click="updatePost">Opdater ønske</button>
     </form>
   </div>
 </template>
@@ -28,14 +28,9 @@
 <script>
 import { postRef } from "../firebase-db";
 export default {
-  name: "Create",
-  data() {
-    return {
-      post: {
-        description: "",
-        image: null
-      }
-    };
+  name: "Update",
+  props: {
+    post: Object
   },
   methods: {
     triggerChooseImg() {
@@ -49,8 +44,12 @@ export default {
       };
       fileReader.readAsDataURL(imageFile);
     },
-    createPost() {
-      postRef.add(this.post);
+    updatePost() {
+      console.log(this.post);
+      postRef.doc(this.post.id).set({
+        description: this.post.description,
+        image: this.post.image
+      });
       this.$router.push("/");
     }
   }

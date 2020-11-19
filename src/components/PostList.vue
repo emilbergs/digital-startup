@@ -1,12 +1,12 @@
-<template>
-  <div>
-    <h2>Posts</h2>
-    <div class="grid-container">
-      <article v-for="post in posts" :key="post.id">
-        <img v-bind:src="post.image" alt="" />
-        <h3>{{ post.description }}</h3>
-      </article>
-    </div>
+ <template>
+  <div class="grid-container">
+    <article v-for="post in posts" :key="post.id">
+      <img :src="post.image" />
+      <h3>{{ post.description }}</h3>
+      <router-link :to="{ name: 'Update', params: { post: post } }">
+        <button>Rediger ønske</button>
+      </router-link>
+    </article>
   </div>
 </template>
 
